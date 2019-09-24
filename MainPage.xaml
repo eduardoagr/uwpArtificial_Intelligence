@@ -35,20 +35,31 @@
                    Height="300"
                    Margin="10"
                    RelativePanel.AlignHorizontalCenterWithPanel="True"
-                  RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                   RelativePanel.AlignVerticalCenterWithPanel="True" />
             <TextBlock x:Name="TagName"
-                       Text="Place name"
+                       Text=""
                        FontSize="20"
                        RelativePanel.AlignVerticalCenterWithPanel="True"
                        RelativePanel.RightOf="selectedImage"
                        Margin="10"
                        RelativePanel.AlignHorizontalCenterWithPanel="True" />
             <TextBlock x:Name="Probability"
-                       Text="Probability"
+                       Text=""
                        RelativePanel.RightOf="selectedImage"
                        FontSize="20"
                        RelativePanel.AlignHorizontalCenterWith="TagName"
                        RelativePanel.Below="TagName" />
+            <ProgressRing x:Name="Pring"
+                          RelativePanel.Above="TagName"
+                          Margin="10"
+                          RelativePanel.RightOf="selectedImage" />
+            <TextBlock x:Name="PringStatus"
+                       Text=""
+                       Margin="10"
+                       RelativePanel.Above="TagName"
+                       RelativePanel.RightOf="Pring"
+                       RelativePanel.AlignVerticalCenterWithPanel="True" />
+
         </RelativePanel>
 
     </Grid>

@@ -42,11 +42,11 @@ namespace uwpAI {
 
                 bitmap.SetSource(await file.OpenReadAsync());
 
-                selectedImage.Source = bitmap;
-
                 byte[] imgs = await SerializerAsync(file);
 
                 MakePrediction(imgs);
+
+                selectedImage.Source = bitmap;
             }
 
         }
@@ -54,9 +54,12 @@ namespace uwpAI {
         private async void MakePrediction(byte[] imgs) {
 
             var url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/f1211596-1e54-4660-b94b-716d787d5ab3/classify/iterations/uwpLandmarks/image";
-            var prediction_key = "PASTE YOU KEY HERE";
+            var prediction_key = "aaa3268d74f44d239d04b58459d5ca57";
             var content_type = "application/octet-stream";
 
+
+            Pring.IsActive = true;
+            PringStatus.Text = "Please Wait";
             using (var client = new HttpClient()) {
 
                 client.DefaultRequestHeaders.Add("Prediction-Key", prediction_key);
@@ -81,13 +84,15 @@ namespace uwpAI {
                         foreach (var item in predictions) {
 
                             if (predictions[0].probability > 0.7) {
-                                TagName.Text = $"{predictions[0].tagName}";
-                                Probability.Text = predictions[0].probability.ToString("P");
+                                TagName.Text = $"Prediction: {predictions[0].tagName}";
+                                Probability.Text = $"Probability: {predictions[0].probability.ToString("P")}";
                             }
                             else {
                                 TagName.Text = "I do not recognize the picture";
                                 Probability.Text = "";
                             }
+                            PringStatus.Text = "";
+                            Pring.IsActive = false;
                         }
                     }
                 }
